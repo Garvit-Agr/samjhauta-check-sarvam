@@ -31,7 +31,11 @@ LANGUAGE_MAP = {
 }
 
 # Database and App Configuration
-DB_PATH = Path(os.getenv("SQLITE_DB_PATH", str(BASE_DIR / "samjhauta.db")))
+if os.getenv("VERCEL") or os.getenv("AWS_LAMBDA_FUNCTION_NAME"):
+    DB_PATH = Path("/tmp/samjhauta.db")
+else:
+    DB_PATH = Path(os.getenv("SQLITE_DB_PATH", str(BASE_DIR / "samjhauta.db")))
+
 HOST = os.getenv("HOST", "0.0.0.0")
 PORT = int(os.getenv("PORT", "8000"))
 STATIC_DIR = BASE_DIR / "static"
