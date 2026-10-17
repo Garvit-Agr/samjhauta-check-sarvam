@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SamjhautaCheck — AI Fine-Print Trap Detector & Negotiation Coach</title>
+  <meta name="description" content="AI-powered Indian contract forensic trap detector and negotiation coach built on Sarvam AI. Detect predatory rental, loan, and hospital clauses with instant multilingual audio warnings.">
+  
+  <!-- Modern Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="ambient-glow"></div>
+  <div class="ambient-glow-bottom"></div>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>SamjhautaCheck</h1>
+          <p>Fine-Print Trap Detector & Negotiation Coach for Indian Contracts</p>
+        </div>
+      </div>
+      
+      <div class="header-badges">
+        <div class="stack-badge" id="apiStatusBadge">
+          <span class="status-dot active"></span>
+          <span id="apiStatusText">Sarvam AI Stack</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Title -->
+    <section class="hero-section">
+      <div class="hero-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Ruthless Consumer Protection Engine
+      </div>
+      <h2 class="hero-title">
+        Turn Confusing <span class="highlight">Fine Print</span> Into Negotiation Power
+      </h2>
+      <p class="hero-desc">
+        Upload any Indian rental agreement, loan document, or hospital estimate. We detect asymmetric traps, flag missing protections, draft your counter-proposal, and synthesize a Big Brother audio briefing in your language.
+      </p>
+    </section>
+
+    <!-- Ingestion & Control Card -->
+    <section class="glass-card ingest-card">
+      <div class="ingest-grid">
+        <!-- Drag & Drop Zone -->
+        <div class="dropzone" id="dropzone">
+          <div class="dropzone-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+          </div>
+          <h3 class="dropzone-title">Upload Contract or Estimate</h3>
+          <p class="dropzone-subtitle">Drag & drop your PDF, Image, or DOCX document here</p>
+          <label class="btn-browse" for="fileInput">Browse File</label>
+          <input type="file" id="fileInput" class="file-input" accept=".pdf,.txt,.md,.png,.jpg,.jpeg">
+          
+          <div class="file-badge" id="fileBadge">
+            <span id="fileNameDisplay">document.pdf</span>
+          </div>
+
+          <button type="button" class="text-toggle-btn" id="textToggleBtn" style="display:block; margin: 12px auto 0;">
+            ✏️ Or click here to paste raw contract text
+          </button>
+        </div>
+
+        <!-- Ingest Options Side -->
+        <div class="ingest-options">
+          <div class="control-group">
+            <label class="control-label" for="languageSelect">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Spoken Warning Language (Sarvam Bulbul TTS):
+            </label>
+            <div class="select-wrapper">
+              <select id="languageSelect">
+                <option value="en">English (Indian Accent)</option>
+                <option value="hi">हिन्दी (Hindi)</option>
+                <option value="hinglish" selected>Hinglish (Colloquial / Bollywood)</option>
+                <option value="te">తెలుగు (Telugu)</option>
+                <option value="ta">தமிழ் (Tamil)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="action-buttons-group">
+            <button type="button" class="btn-demo" id="loadDemoBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              Load Demo Rental Agreement
+            </button>
+
+            <button type="button" class="btn-audit" id="auditBtn">
+              <div class="spinner" id="auditSpinner"></div>
+              <span id="auditBtnText">Run Forensic Trap Audit</span>
+              <svg id="auditBtnIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collapsible Contract Text Area -->
+      <div class="contract-text-drawer" id="contractDrawer">
+        <textarea id="contractText" class="contract-textarea" placeholder="Paste full contract text, rental clauses, or hospital estimate fine print here..."></textarea>
+      </div>
+    </section>
+
+    <!-- Analysis Results Section -->
+    <main class="results-section" id="resultsSection">
+      
+      <!-- Top Overview: Visual Gauge + Spoken Audio Player -->
+      <section class="overview-grid">
+        <!-- Visual Fairness Gauge -->
+        <div class="glass-card gauge-card">
+          <div class="gauge-svg-container">
+            <svg class="gauge-svg" viewBox="0 0 200 200">
+              <circle class="gauge-bg-circle" cx="100" cy="100" r="85"></circle>
+              <circle class="gauge-fill-circle" id="gaugeCircle" cx="100" cy="100" r="85"></circle>
+            </svg>
+            <div class="gauge-center-text">
+              <span class="gauge-number" id="gaugeScore">--</span>
+              <span class="gauge-total">Fairness Score</span>
+            </div>
+          </div>
+          
+          <div class="verdict-badge verdict-critical" id="verdictBadge">
+            Analyzing...
+          </div>
+          <div class="doc-type-tag" id="docTypeTag">
+            Classification: Residential Agreement
+          </div>
+        </div>
+
+        <!-- Big Brother Spoken Risk Briefing Audio Player -->
+        <div class="glass-card audio-briefing-card">
+          <div>
+            <div class="audio-header">
+              <div class="audio-title-group">
+                <h3>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-saffron)" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                  Listen to 45s "Big Brother" Risk Briefing
+                </h3>
+                <p>Synthesized via Sarvam Bulbul TTS in your chosen language</p>
+              </div>
+              <span class="tts-badge" id="ttsBadgeLanguage">Hinglish • Meera</span>
+            </div>
+
+            <!-- Waveform visualizer -->
+            <div class="waveform-container" id="waveformContainer">
+              <!-- 24 wave bars generated via JS -->
+            </div>
+          </div>
+
+          <div>
+            <div class="audio-controls">
+              <button type="button" class="btn-play-pause" id="playPauseBtn" title="Play Briefing">
+                <svg id="playIcon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg id="pauseIcon" style="display:none;" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              </button>
+
+              <div class="timeline-wrapper">
+                <input type="range" class="timeline-slider" id="timelineSlider" min="0" max="100" value="0">
+                <div class="time-display">
+                  <span id="currentTime">00:00</span>
+                  <span id="totalTime">00:45</span>
+                </div>
+              </div>
+
+              <button type="button" class="playback-speed-btn" id="speedBtn">1.0x</button>
+            </div>
+
+            <div class="transcript-toggle">
+              <button type="button" class="btn-transcript" id="transcriptToggleBtn">
+                📝 View Spoken Script Transcript
+              </button>
+            </div>
+            
+            <div class="transcript-drawer" id="transcriptDrawer">
+              <p id="transcriptText">Audio briefing script loading...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tabs Navigation -->
+      <nav class="tabs-nav">
+        <button type="button" class="tab-btn active" data-tab="tab-flags">
+          🔴 Predatory Traps
+          <span class="tab-count red" id="flagCountBadge">0</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="tab-missing">
+          🟡 Missing Protections
+          <span class="tab-count amber" id="missingCountBadge">0</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="tab-whatsapp">
+          💬 WhatsApp Negotiation Coach
+        </button>
+        <button type="button" class="tab-btn" data-tab="tab-summary">
+          📋 Executive Summary & Insights
+        </button>
+      </nav>
+
+      <!-- Tab 1: Red Flags (Predatory Traps) -->
+      <div class="tab-panel active" id="tab-flags">
+        <div class="flags-list" id="flagsContainer">
+          <!-- Dynamically populated flag cards -->
+        </div>
+      </div>
+
+      <!-- Tab 2: Missing Protections -->
+      <div class="tab-panel" id="tab-missing">
+        <div class="missing-grid" id="missingContainer">
+          <!-- Dynamically populated missing protection cards -->
+        </div>
+      </div>
+
+      <!-- Tab 3: WhatsApp Negotiation Draft -->
+      <div class="tab-panel" id="tab-whatsapp">
+        <div class="glass-card negotiate-card">
+          <div class="negotiate-header">
+            <div class="negotiate-title">
+              <h3>Polite Counter-Negotiation Draft</h3>
+              <p>Ready to copy and send to the landlord, bank, or counterparty</p>
+            </div>
+            <div class="copy-actions">
+              <button type="button" class="btn-copy" id="copyNegotiationBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy Message
+              </button>
+              <a href="#" target="_blank" class="btn-copy" id="openWhatsAppBtn" style="text-decoration:none;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg>
+                Open in WhatsApp
+              </a>
+            </div>
+          </div>
+          <div class="negotiate-message-box" id="negotiationMessageBox">
+            Generating polite negotiation draft...
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 4: Executive Summary -->
+      <div class="tab-panel" id="tab-summary">
+        <div class="glass-card summary-card">
+          <p class="summary-lead" id="summaryLeadText">
+            Audit summary loading...
+          </p>
+          <h4 class="takeaways-title">Key Risk Takeaways & Action Points</h4>
+          <ul class="takeaways-list" id="takeawaysList">
+            <!-- Dynamically populated list -->
+          </ul>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Built on the <strong>Sarvam AI Stack</strong> (LLM Reasoning • Mayura Translation • Bulbul TTS • Document AI).</p>
+      <p style="margin-top: 6px;">Disclaimer: SamjhautaCheck provides informational consumer-rights forensic analysis and does not constitute formal legal counsel.</p>
+    </footer>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toastNotification">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toastMessage">Copied to clipboard!</span>
+  </div>
+
+  <!-- Audio Element -->
+  <audio id="audioElement" preload="auto"></audio>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

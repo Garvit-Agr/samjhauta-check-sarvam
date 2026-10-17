@@ -1,0 +1,24 @@
+# Environments and Secrets (NEVER COMMIT SENSITIVE API KEYS)
+.env
+.env.*
+!.env.example
+
+# SQLite Databases
+*.db
+samjhauta.db
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv/
+
+# IDE & OS files
+.DS_Store
+.idea/
+.vscode/
